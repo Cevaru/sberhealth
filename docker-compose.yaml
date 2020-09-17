@@ -1,0 +1,43 @@
+version: '3.7'
+
+volumes:
+  sber_node_modules:
+
+services:
+  nginx:
+    image: nginx:1.17.10-alpine
+    depends_on: 
+      - php
+      - frontend
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./api:/var/www/sberhealth/api
+      - ./frontend:/var/www/sberhealth/frontend
+    ports:
+      - 8111:80
+
+  php:
+    image: php:7.4-fpm-alpine
+    container_name: php
+    volumes:
+      - ./api:/var/www/sberhealth/api
+    ports:
+      - 9000
+
+  node_modules:
+    build:
+      context: ./frontend
+      dockerfile: node_modules.dockerfile
+    volumes:
+      - sber_node_modules:/usr/src/app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: vue.dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+      - sber_node_modules:/usr/src/app/node_modules
+    depends_on: 
+      - node_modules
+
