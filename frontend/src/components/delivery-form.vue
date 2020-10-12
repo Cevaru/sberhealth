@@ -230,7 +230,7 @@ const exactLengthValidator = (length) => (value) => value.length === length;
 
 const initialUserInfo = () => ({
   firstname: '',
-  lastname: ,
+  lastname: '',
   phone: '',
   email: '',
 });
