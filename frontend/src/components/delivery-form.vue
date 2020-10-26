@@ -226,6 +226,9 @@ const phoneValidator = (value) => value ? /^\+7\d{10}$/.test(value) : true;
  */
 const simpleDateValidator = (value) => value ? /^\d{2}\/\d{2}\/\d{4}$/.test(value) : true;
 
+/**
+ * Валидация длины ввода
+ */
 const exactLengthValidator = (length) => (value) => value.length === length;
 
 const initialUserInfo = () => ({
@@ -305,7 +308,7 @@ export default {
       date: {
         required: requiredIf((deliveryInfo) => deliveryInfo.type === 0),
         dateFormat: simpleDateValidator,
-      }
+      },
     },
   },
   methods: {

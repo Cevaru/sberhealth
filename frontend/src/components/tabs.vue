@@ -1,16 +1,16 @@
 <template>
   <div class="border-gray-400 border-b flex mb-4">
     <div
-      class="tab-item"
+      class="border-t border-l border-r border-transparent rounded-t -mb-px px-3 py-2 cursor-pointer text-blue-600"
       :class="{
-        'active': activeTab === 'main'
+        'border-gray-400 text-gray-900 bg-white': activeTab === 'main'
       }"
       @click="$emit('change-tab', 'main')"
     >Основные данные</div>
     <div
-      class="tab-item"
+      class="border-t border-l border-r border-transparent rounded-t -mb-px px-3 py-2 cursor-pointer text-blue-600"
       :class="{
-        'active': activeTab === 'address'
+        'border-gray-400 text-gray-900 bg-white': activeTab === 'address'
       }"
       @click="$emit('change-tab', 'address')"
     >Адрес доставки</div>
@@ -27,12 +27,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss" scoped>
-.tab-item {
-  @apply border-t border-l border-r border-transparent rounded-t -mb-px px-3 py-2 cursor-pointer text-blue-600;
-}
-.tab-item.active {
-  @apply border-gray-400 text-gray-900 bg-white; 
-}
-</style>
